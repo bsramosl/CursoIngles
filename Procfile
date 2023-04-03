@@ -1,1 +1,1 @@
-web: gunicorn CursoIngles.wsgi
+python manage.py migrate && gunicorn CursoIngles wsgi
