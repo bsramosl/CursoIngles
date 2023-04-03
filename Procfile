@@ -1,1 +1,1 @@
-web: python manage.py migrate && gunicorn CursoIngles wsgi
+web: gunicorn CursoIngles.wsgi --log-file-
