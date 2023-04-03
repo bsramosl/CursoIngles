@@ -1,1 +1,1 @@
-web: gunicorn CursoIngles.wsgi --log-file-
+web: gunicorn CursoIngles.wsgi
