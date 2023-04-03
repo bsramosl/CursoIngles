@@ -1,0 +1,486 @@
+{% extends "layouts/BaseMajor.html" %}
+{% load static %}
+
+{% block title %}
+ 
+
+{% endblock %}
+
+
+{% block css %} 
+ 
+<link rel="stylesheet" type="text/css" href="{% static 'simulador/assets/css/style.css'%}">
+  
+{% endblock %}
+
+{% block content %} 
+ 
+
+{% load static %}
+ 
+    <style>
+        .boton-simulador {
+            color: #212529;
+            width: 2.1rem;
+            height: 2.1rem;
+            border: 1px solid transparent;
+            margin: 0.39rem;
+            font-size: 1rem;
+            background: #dad2cf;
+            box-shadow: 0 1px 3px 1px #7d7d7d;
+            text-align: center;
+            transition: color .15s ease-in-out, false .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+            font-weight: 400;
+            border-radius: 8px;
+            text-decoration: none;
+        }
+
+        .boton-seleccionado {
+            color: white;
+            background: #0d6efd!important;
+        }
+
+        .boton-contestada {
+            color: white;
+            background: gray;
+        }
+
+        .respuesta-simulador {
+            display: flex;
+            flex-direction: row;
+            cursor: pointer;
+            list-style: none;
+            padding: 0.7rem 0.5rem;
+            border: 3.5px solid rgb(187, 187, 187);
+            margin-top: 0.5rem;
+            margin-bottom: 0.5rem;
+            border-radius: 0.8rem;
+        }
+
+        .respuesta-simulador:hover {
+            background: rgb(237, 237, 237);
+        }
+
+        .respuesta-simulador p {
+            margin: 0;
+        }
+
+        .respuesta-simulador > p > img {
+            width: 100%;
+            height: 100%;
+            max-height: 100px;
+            max-width: 300px;
+        }
+
+        .enunciado > p > img {
+            width: 100%;
+            height: 1000%;
+            max-width: 300px;
+            max-height: 300px;
+        }
+
+        .enunciado > table {
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        td {
+            border: 1px solid #dee2e6 !important;
+            padding: 0.5rem !important;
+            text-align: center !important;
+            border-collapse: collapse !important;
+            border-width: 2px !important;
+        }
+
+    </style>
+   
+         
+         
+
+<div style="background-color: #f6f7ff">
+    <div class="container-lg pt-4">
+        
+<div class="row">
+    <div id="busca" class="col-12 col-md-4 justify-content-center">
+        <h2 class="h6 text-center">Test </h2>
+        <div id="sho" class="text-center"> 
+        </div>
+ 
+        <hr class="border-4 border-top border-dark">
+        
+       
+    </div>
+
+
+    <div class="col-12 col-md-8 px-3 order-first order-md-last">
+        <div id="instrucciones">
+            <div class="row gy-4">
+                <h1 class="h2 text-center mb-2">
+                    Test
+                </h1> 
+                <h2 class="h5 text-center">Instrucciones para resolver el Test</h2>
+
+                <div class="col-sm-6">
+                    <div class="card p-3 shadow-sm h-100 gap-2">
+                        <div class="d-flex align-items-center gap-2">
+                            
+                            <h3 class="h5 m-0">Paso 1</h3>
+                        </div>
+
+                        <p class="m-0" style="font-size: 15px;">Inicia la simulación, se van a generar preguntas aleatorias según el test que hayas seleccionado.</p>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="card p-3 shadow-sm h-100 gap-2">
+                        <div class="d-flex align-items-center gap-2">
+                           
+                            <h3 class="h5 m-0">Paso 2</h3>
+                        </div>
+
+                        <p class="m-0" style="font-size: 15px;">Cada pregunta cuenta con cuatro opciones de respuesta y sólo podrás seleccionar una alternativa por pregunta o no seleccionar ninguna.</p>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="card p-3 shadow-sm h-100 gap-1">
+                        <div class="d-flex align-items-center gap-2">
+                           
+                            <h3 class="h5 m-0">Paso 3</h3>
+                        </div>
+
+                        <p class="m-0" style="font-size: 15px;">Recuerda que tienes un tiempo determinado para finalizar el intento. Cuando estes seguro haz clic en finalizar simulación.</p>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="card p-3 shadow-sm h-100 gap-2">
+                        <div class="d-flex align-items-center gap-2">
+                            
+                            <h3 class="h5 m-0">Paso 4</h3>
+                        </div>
+
+                        <p class="m-0" style="font-size: 15px;">Visualiza el puntaje obtenido, tus respuestas y la solución. Si gustas vuelve a intentarlo nuevamente.</p>
+                    </div>
+                </div> 
+            </div>
+            <div class="col-12 justify-content-center d-flex mt-3 mb-5">
+                <button class="btn btn-primary btn-lg" onclick="startSimulador()">Empezar Test</button>
+            </div>
+        </div>
+
+
+        <div id="simulador">
+            <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+                <div class="py-2 card shadow-sm bg-secondary text-center" style="width: 270px; color: white">
+                    <div class="row">
+                        <div class="col-4">
+                            <img class="clock-custom" src="/static/reloj.png" alt="" width="45" height="45">
+                        </div>
+                        <div class="col-1"></div>
+                        <div class="col-7">
+                            <div class="row" style="margin-left: -60px;">
+                                <div class="col" style="margin-right: -30px">
+                                    <div style="font-size: 20px;"><b id="minutes">10</b></div>
+                                    <div style="font-size: 14px;">Minutos</div>
+                                </div>
+                                <div class="col-1">:</div>
+                                <div class="col" style="margin-left: -30px">
+                                    <div style="font-size: 20px;"><b id="seconds">00</b></div>
+                                    <div style="font-size: 14px;">Segundos</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="justify-content-center d-flex align-items-center">
+                    <button class="btn btn-primary" style="margin-right: 8px" onclick="nextQuestion()">
+                        Siguiente 
+                    </button>
+                    <button class="btn btn-secondary" onclick="finishSimulador()">
+                        Finalizar 
+                    </button>
+                </div>
+            </div>
+
+
+            <div class="row mt-4">
+                <div class="col">
+                    <h3 class="h6 text-primary"><b>Pregunta <span id="num-pregunta">1</span> </b></h3>
+                </div>
+                <div class="col">
+                    <h3 class="h6 text-end"><span id="categoria-pregunta">1</span></h3>
+                </div>
+
+                <div class="mt-4" id="enunciado"></div>
+                <div class="mt-2" id="respuestas"></div>
+            </div>
+
+            <div class="justify-content-center d-flex align-items-center my-3 d-md-none">
+                <button class="btn btn-primary" style="margin-right: 8px" onclick="nextQuestion()">
+                    Siguiente
+                    <img src="../../static/icons/skip_next.svg" alt="" width="20" height="20">
+                </button>
+                <button class="btn btn-secondary" onclick="finishSimulador()">
+                    Finalizar
+                    <img src="../../static/icons/flag.svg" alt="" width="20" height="20">
+                </button>
+            </div>
+        </div> 
+    </div>
+            </div>
+        </div>
+    </div>
+</div>
+ 
+        
+
+    </div>
+</div> 
+ 
+  
+
+{% endblock %}
+
+
+{% block extrajs %} 
+ 
+<script>
+    
+    var data = [];
+    var listaPreguntas = new Array;
+    data = {{ question | safe  }}; 
+    
+    
+    con = 0;
+    document.getElementById('busca').style.display = 'block';
+    let res = document.querySelector('#sho')
+    for (item of data) {
+        con += 1;
+        listaPreguntas.push({
+            id: item.id,
+            id_alterno: "62a3a563082cd8313baf67e1",
+            enunciado: item.text,
+            categoria: "Razonamiento",
+            respuestas: [
+
+                {
+                    id: item.respuestas[0].id,
+                    enunciado: item.respuestas[0].text,
+                    correcta: item.respuestas[0].correct
+                },
+
+                {
+                    id: item.respuestas[1].id,
+                    enunciado: item.respuestas[1].text,
+                    correcta: item.respuestas[1].correct
+                },
+
+                {
+                    id: item.respuestas[2].id,
+                    enunciado: item.respuestas[2].text,
+                    correcta: item.respuestas[2].correct
+                },
+
+                {
+                    id: item.respuestas[3].id,
+                    enunciado: item.respuestas[3].text,
+                    correcta: item.respuestas[3].correct
+                }
+            ]
+        })
+        res.innerHTML += `
+            <button 
+                        class="boton-simulador " 
+                        id = "boton-${item.id}"
+                        onclick="mostrarPregunta('${item.id}')"
+                    >
+                        ${con}
+                    </button>                 
+      `
+    }   
+    
+    
+    const seleccionarRespuesta = (idRespuesta) => {
+
+        if (idRespuesta === respuestaActual) return;
+
+        if (respuestaActual != null) {
+            const uncheckedRespAnterior = document.getElementById(`unchecked-${respuestaActual}`);
+            const checkedRespAnterior = document.getElementById(`checked-${respuestaActual}`);
+            uncheckedRespAnterior.style.display = "block";
+            checkedRespAnterior.style.display = "none";
+        }
+
+        const checkedRespActual = document.getElementById(`checked-${idRespuesta}`)
+        const uncheckedRespActual = document.getElementById(`unchecked-${idRespuesta}`)
+        checkedRespActual.style.display = 'block';
+        uncheckedRespActual.style.display = 'none';
+
+        respuestaActual = idRespuesta;
+
+        pregunta.userAnswer = idRespuesta;
+    }
+
+    const literales = ["A", "B", "C", "D", "E", "F", "G"];
+    const generarRespuestas = (pregunta) => {
+        let respuestas = pregunta.respuestas;
+        let divRespuestas = document.getElementById("respuestas");
+        let htmlRespuesta;
+        divRespuestas.innerHTML = "";
+
+        let index = 0;
+
+        respuestas.forEach((respuesta) => {
+            let contenedorRespuesta = document.createElement("div");
+            contenedorRespuesta.id = respuesta.id;
+            contenedorRespuesta.classList.add("col-12");
+
+            let htmlRespuesta;
+
+            if (pregunta.userAnswer == respuesta.id) {
+                htmlRespuesta = `
+                    <div class="respuesta-simulador" onclick="seleccionarRespuesta('${respuesta.id}', '${pregunta.id}')">
+                        <img id="unchecked-${respuesta.id}" style="display: none;" width="23" height="23" src="/static/radio_button_unchecked.png" alt="" />
+                        <img id="checked-${respuesta.id}" width="23" height="23" src="/static/radio_button_checked.png" alt="" />
+                        &nbsp;&nbsp;<span>${literales[index]})&nbsp;&nbsp;</span> ${respuesta.enunciado}
+                    </div>
+                `;
+            } else {
+                htmlRespuesta = `
+                    <div class="respuesta-simulador" onclick="seleccionarRespuesta('${respuesta.id}')">
+                        <img id="unchecked-${respuesta.id}" width="23" height="23" src="/static/radio_button_unchecked.png" alt="" />
+                        <img id="checked-${respuesta.id}" style="display: none;" width="23" height="23" src="/static/radio_button_checked.png" alt="" />
+                        &nbsp;&nbsp;<span>${literales[index]})&nbsp;&nbsp;</span>${respuesta.enunciado}
+                    </div>
+                `;
+            }
+            
+            index ++;
+
+            contenedorRespuesta.innerHTML = htmlRespuesta
+            document.getElementById("respuestas").appendChild(contenedorRespuesta);
+        });
+    }
+
+    const mostrarPregunta = (id) => {
+
+        if (!start) return;
+
+        if (pregunta.userAnswer){
+            let botonPreguntaActual = document.getElementById("boton-" + pregunta.id);
+            botonPreguntaActual.classList.add("boton-contestada");
+        }
+
+        indexPregunta = listaPreguntas.findIndex(pregunta => pregunta.id == id);
+        pregunta = listaPreguntas[indexPregunta];
+        // Put num of question
+        document.getElementById("num-pregunta").innerHTML = indexPregunta + 1;
+        document.getElementById("categoria-pregunta").innerHTML = pregunta.categoria;
+
+        enunciado.classList.add("enunciado");
+        enunciado.innerHTML = pregunta.enunciado;
+        botonPreguntaActual.classList.remove("boton-seleccionado");
+        botonPreguntaActual = document.getElementById("boton-" + pregunta.id);
+        botonPreguntaActual.classList.add("boton-seleccionado");
+        generarRespuestas(pregunta);
+
+        if (pregunta.userAnswer != null) {
+            respuestaActual = pregunta.userAnswer;
+        } else {
+            respuestaActual = null;
+        }
+
+        window.MathJax?.typeset();
+        // Go to the div with id "simulador"
+        document.getElementById("simulador").scrollIntoView();
+    }
+
+    const startSimulador = () => {
+        if (start) return;
+
+        start = true;
+
+        var time = "600",
+        displayMinutes = document.querySelector('#minutes');
+        displaySeconds = document.querySelector('#seconds');
+        startTimer(time, displayMinutes, displaySeconds);
+
+        const divSimulador = document.getElementById('simulador');
+        const divInstrucciones = document.getElementById('instrucciones');
+        divSimulador.style.display = "block";
+        divInstrucciones.style.display = "none";
+    }
+
+    const nextQuestion = () => {
+        if (indexPregunta == numPreguntas - 1) return;
+        mostrarPregunta(listaPreguntas[indexPregunta + 1].id);
+    }
+    
+    
+
+    const finishSimulador = () => {
+        if (!sessionStorage.getItem("dataSimulador") === null) {
+            sessionStorage.removeItem("dataSimulador", dataSimulador);
+        }
+        console.log(listaPreguntas); 
+
+ 
+
+        const dataSimulador = JSON.stringify(listaPreguntas);
+        sessionStorage.setItem("dataSimulador", dataSimulador);
+        sessionStorage.setItem("tiempo", timer);
+        sessionStorage.setItem("simulador", "numerico");
+        sessionStorage.setItem("tipo", "basico");
+        sessionStorage.setItem("guardar", "true");
+
+        if (start) clearInterval(intervalo);
+        start = false;
+        window.location.replace("{% url 'Long:Resultado' %}");
+    }
+
+    
+let intervalo;
+var timer, minutes, seconds;
+
+function startTimer(duration, displayMinutes, displaySeconds) {
+    timer = duration,
+        intervalo = setInterval(function() {
+            minutes = parseInt(timer / 60, 10)
+            seconds = parseInt(timer % 60, 10);
+
+            minutes = minutes < 10 ? "0" + minutes : minutes;
+            seconds = seconds < 10 ? "0" + seconds : seconds;
+
+            displayMinutes.textContent = minutes;
+            displaySeconds.textContent = seconds;
+
+            if (--timer < 0) {
+                clearInterval(intervalo);
+                start = false;
+                window.location.href = "../resultado.html";
+            }
+        }, 1000);
+}
+
+    // Inicio
+
+    let pregunta = listaPreguntas[0];
+    let indexPregunta = 0;
+    let numPreguntas = listaPreguntas.length;
+    let respuestaActual = null;
+    let start = false;
+
+    // Contenido Inicial
+    document.getElementById("categoria-pregunta").innerHTML = pregunta.categoria;
+    let botonPreguntaActual = document.getElementById("boton-" + pregunta.id);
+    botonPreguntaActual.classList.add("boton-seleccionado");
+    let enunciado = document.getElementById("enunciado");
+    enunciado.innerHTML = pregunta.enunciado;
+    generarRespuestas(pregunta);
+
+    const divSimulador = document.getElementById('simulador');
+    divSimulador.style.display = "none";
+</script>
+  
+{% endblock extrajs %}
+ 

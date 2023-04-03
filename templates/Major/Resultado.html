@@ -1,0 +1,224 @@
+{% extends "layouts/BaseMajor.html" %}
+{% load static %}
+
+{% block title %}
+ 
+
+{% endblock %}
+
+
+{% block css %} 
+  
+ 
+{% endblock %}
+
+{% block content %}  
+    
+    <style>
+        .opcion {
+            margin: 2px;
+            padding: 0.6rem 1rem;
+            border: 3px solid #c7c7c7;
+            border-radius: 0.8rem;
+        }
+        .opcion p {
+            margin: 0;
+        }
+
+        .opcion > p > img {
+            width: 100%;
+            height: 100%;
+            max-height: 100px;
+            max-width: 300px;
+        }
+
+        .enunciado > p > img {
+            width: 100%;
+            height: 1000%;
+            max-width: 300px;
+            max-height: 300px;
+        }
+
+        .enunciado > table {
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        td {
+            border: 1px solid #dee2e6 !important;
+            padding: 0.5rem !important;
+            text-align: center !important;
+            border-collapse: collapse !important;
+            border-width: 2px !important;
+        }
+    </style>  
+
+<div class="py-3" style="background-color: #E9ECF8">
+    <div class="container-lg">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="row">
+                    <div class="card shadow-sm text-center pt-3" style="max-width: 400px; margin: 0 auto">
+                        <h1 class="h6 fw-bold">Resultado</h1>
+                        <p class="m-0">TÚ PUNTAJE</p>
+                        <div class="mb-2" id="puntaje"></div>
+                        <div id="puntaje-alert"></div>
+                    </div>
+                    <div class="mb-4">
+                        <div class="d-flex justify-content-center align-items-center gap-3">
+                            <a href="{%url 'Long:Play'%}" class="d-flex gap-1 btn btn-sm btn-primary mt-3">
+                                <svg width="20" fill="#fff" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="ReplayCircleFilledOutlinedIcon"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 16.5c-3.31 0-6-2.69-6-6h2c0 2.21 1.79 4 4 4s4-1.79 4-4c0-2.24-1.85-4.09-4.16-3.99l1.57 1.57L12 11.5l-4-4 4-4 1.41 1.41-1.6 1.6C15.28 6.4 18 9.18 18 12.5c0 3.31-2.69 6-6 6z"></path></svg>
+                                Repetir
+                            </a> 
+                        </div>
+                    </div> 
+                    <div class="px-0 mt-5" id="preguntas">
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card p-3" style="background-color: #F4F5F8;">
+     
+    <div class="card p-3 mt-3" style="background-color: #348BD5">   
+        <h3 style="font-size: 1.2853rem; font-weight: 700; color: white;">Practica con Simuladores</h3>
+        <p style="font-size: 12px; color: white;">Prueba tu conocimiento, resuelve estos simuladores similares al examen Transformar</p>
+        <div class="d-flex">
+            <a href="/simulador/" class="btn btn-sm btn-light">Practicar</a>
+        </div>
+    </div> 
+    
+</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+ 
+
+    <footer style="background-color: #F4F5F8">  
+        <script type="text/javascript">
+       
+
+        const data = sessionStorage.getItem("dataSimulador");
+        const simulador = sessionStorage.getItem("simulador");
+        const tiempo = sessionStorage.getItem("tiempo");
+        const tipo = sessionStorage.getItem("tipo");
+        const guardar = sessionStorage.getItem("guardar");
+
+        const dataSimulador = JSON.parse(data);
+        const literales = ["A", "B", "C", "D", "E", "F", "G"];
+
+        let puntaje = 0;
+        const calcularPuntaje = () => {
+            const numPreguntas = dataSimulador.length; 
+            for (let i = 0; i < numPreguntas; i++) {
+                const pregunta = dataSimulador[i];                  
+
+                const respuestaCorrecta = pregunta.respuestas.find(({ correcta }) => correcta === 'True');
+                if (pregunta.userAnswer == respuestaCorrecta.id) {           
+                    puntaje++;
+                }
+
+                // Genera el HTML de la respuestas.forEach
+
+                const questionTag = `
+                    <div class="card shadow-sm mb-4 pb-3">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between mb-4 flex-wrap gap-3">
+                                <div class="d-flex align-items-center gap-3">
+                                    <div id="badge-${pregunta.id}"></div>
+                                    <span class="fw-bold text-primary">Pregunta ${i + 1}</span>
+                                </div>
+                            </div>
+                            <div class="enunciado">
+                                ${ pregunta.enunciado }
+                            </div>
+                            <div class="row gy-3 g-3" id="respuestas-${ pregunta.id }">
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+                document.getElementById("preguntas").innerHTML += questionTag;
+                if (!pregunta.userAnswer) {
+                    document.getElementById(`badge-${pregunta.id}`).innerHTML = `
+                        <span class="badge bg-warning">Sin responder</span>
+                    `;
+                } else { 
+                    if (pregunta.userAnswer == respuestaCorrecta.id) {
+                        document.getElementById(`badge-${pregunta.id}`).innerHTML = `
+                            <span class="badge bg-success">Correcta</span>
+                        `;
+                    } else {
+                        document.getElementById(`badge-${pregunta.id}`).innerHTML = `
+                            <span class="badge bg-danger">Incorrecta</span>
+                        `;
+                    }
+                }
+
+                index = 0;
+                pregunta.respuestas.forEach((respuesta) => {
+                 
+                    respuestasTag = `
+                        <div class="col-md-6">
+                            <div class="opcion d-flex" id="opcion-${respuesta.id }">
+                                <svg width=21 id="correct-${respuesta.id }" style="margin-right: 7px; display:none" fill="rgb(181, 213, 106)" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="CheckCircleRoundedIcon"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zM9.29 16.29 5.7 12.7a.9959.9959 0 0 1 0-1.41c.39-.39 1.02-.39 1.41 0L10 14.17l6.88-6.88c.39-.39 1.02-.39 1.41 0 .39.39.39 1.02 0 1.41l-7.59 7.59c-.38.39-1.02.39-1.41 0z"></path></svg>
+                                <svg width=21 id="incorrect-${ respuesta.id }" style="margin-right: 7px; display:none" fill="rgb(229, 67, 74)" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="CancelIcon"><path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm5 13.59L15.59 17 12 13.41 8.41 17 7 15.59 10.59 12 7 8.41 8.41 7 12 10.59 15.59 7 17 8.41 13.41 12 17 15.59z"></path></svg>
+                                <span>${literales[index]}) &nbsp;</span>
+                                ${respuesta.enunciado }
+                            </div>
+                        </div>
+                    `;
+                    document.getElementById(`respuestas-${ pregunta.id }`).innerHTML += respuestasTag;
+                    
+                    if (respuesta.correcta === "True") {                                              
+                        document.getElementById(`opcion-${respuesta.id }`).style.border = "4px solid rgb(181, 213, 106)";
+                    }
+                    console.log(respuesta.id == pregunta.userAnswer);
+                    if (respuesta.id == pregunta.userAnswer && respuesta.correcta  === "True") {                        
+                        document.getElementById(`correct-${respuesta.id }`).style.display = "block";
+                    }
+                    if (respuesta.id == pregunta.userAnswer && respuesta.correcta === "False") {
+                        document.getElementById(`incorrect-${respuesta.id }`).style.display = "block";
+                    }
+                    index ++;
+                });
+            
+            };
+
+            const tagPuntaje = document.getElementById("puntaje");
+            const tagAlert = document.getElementById("puntaje-alert");
+
+            let clase;
+            if (puntaje >= numPreguntas - 3) {
+                clase = "text-success";
+            } else if (puntaje >= numPreguntas / 2) {
+                clase = "text-warning";
+            } else {
+                clase = "text-danger";
+            }
+
+            tagPuntaje.innerHTML = `
+                <h3 class="h4 fw-bolder">
+                    <span class="${clase}">${puntaje}</span>/${numPreguntas}
+                </h3>
+            `; 
+            return puntaje;
+        }
+            
+        calcularPuntaje();
+
+        
+    </script>
+
+           
+            
+{% endblock %}
+
+
+{% block extrajs %} 
+ 
+
+ 
+{% endblock extrajs %}
