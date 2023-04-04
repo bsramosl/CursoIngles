@@ -29,19 +29,20 @@
         </div>
       </div>
       <div class="row">
+        {% for cat in category%}
         <div class="col-md-6 col-lg-4 col-xl-3">
-          <a href="{%url 'Long:Play'%}" class="d-block">
-            <div class="category-item category-color-1">
+          <a href="{%url 'Long:Play' cat.id %}" class="d-block">
+            <div class="category-item category-color-6">
               <div class="category-item-icon">
-                <i class="fad fa-laptop-code"></i>
+                <i class="fad fa-book"></i>
               </div>
               <div class="category-item-content">
-                <h6>Development</h6>
-                <span>2,579 Courses</span>
+                <h6>{{cat.name}}</h6>
               </div>
             </div>
           </a>
         </div> 
+        {% endfor %}
       </div> 
     </div>
   </div>

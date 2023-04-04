@@ -249,6 +249,7 @@
     var data = [];
     var listaPreguntas = new Array;
     data = {{ question | safe  }}; 
+    console.log(data);
     
     
     con = 0;
@@ -260,7 +261,7 @@
             id: item.id,
             id_alterno: "62a3a563082cd8313baf67e1",
             enunciado: item.text,
-            categoria: "Razonamiento",
+            categoria: item.category,
             respuestas: [
 
                 {

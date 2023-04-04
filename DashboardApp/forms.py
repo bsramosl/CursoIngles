@@ -11,6 +11,19 @@ from django.contrib.auth import authenticate, get_user_model
 User = get_user_model()
 
 
+class CategoryForm(ModelForm):
+    
+    class Meta:	
+        model = CategoryModel
+        fields = ('__all__')
+        widgets = { 
+            'name': TextInput(
+                attrs={
+                    'class': 'form-control',
+                }
+            ),
+        }
+
 class QuestionForm(ModelForm):
 
     class Meta:
@@ -22,6 +35,12 @@ class QuestionForm(ModelForm):
                     'class': 'form-control',
                 }
             ),
+	        'category': Select(
+                attrs={
+                    'class': 'form-control',
+                }
+            ),
+	        
         }
  
 

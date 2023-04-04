@@ -35,8 +35,7 @@
                 <table id="tablelist" class="table table-striped custom-table table-hover">
                     <thead>
                         <tr> 
-                            <th>Text</th> 
-                            <th>Category</th>                           
+                            <th>Name</th>                            
                             <th>Opciones</th>
                         </tr>
                     </thead>
@@ -44,8 +43,7 @@
 
                         {% for list in object_list %}
                         <tr>
-                            <td>{{list.text}}</td>
-                            <td>{{list.category}}</td>                          
+                            <td>{{list.name}}</td>                          
                             <td>
                                 <a href="{% url update list.id %} " class="btn btn-primary btn-xs">
                                     <i class="fa fa-pencil"></i>

@@ -19,53 +19,14 @@ from django.http import Http404
 
 class Index(TemplateView):
     template_name = 'Major/Index.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['category'] = CategoryModel.objects.all()
+        return context
+
+
  
-   
-def tablero(request):
-    total_usaurios_quiz = QuizUser.objects.order_by('-puntaje_total')[:10]
-    contador = total_usaurios_quiz.count()
-
-    context = {
-        'usuario_quiz':total_usaurios_quiz,
-        'contar_user':contador
-    }
-
-    return render(request, 'Major/Tablero.html', context)
- 
-def jugar(request):
-
-    Quiz, created = QuizUser.objects.get_or_create(usuario=request.user)
-
-    if request.method == 'POST':
-        print(request.POST)
-        pregunta_pk = request.POST.get('pregunta_pk')
-        pregunta_respondida = Quiz.intentos.select_related('pregunta').get(pregunta__pk=pregunta_pk)
-        respuesta_pk = request.POST.get('respuesta_pk')
-
-        try:
-            opcion_selecionada = pregunta_respondida.pregunta.questions.get(pk=respuesta_pk)
-        except ObjectDoesNotExist:
-            raise Http404 
-        return redirect('Long:Resultado')
-
-    else:
-        pregunta = Quiz.obtener_nuevas_preguntas()    
-        if pregunta is not None:
-            Quiz.crear_intentos(pregunta)  
-        context = {
-            'pregunta':pregunta
-        } 
-    return render(request, 'Major/Jugar.html', context)
-
-
-def resultado_pregunta(request, pregunta_respondida_pk):
-    respondida = get_object_or_404(PreguntasRespondidas, pk=pregunta_respondida_pk)
-
-    context = {
-        'respondida':respondida
-    }
-    return render(request, 'Major/Resultados.html', context)
-
 class Login(FormView):
     template_name = 'User/Login.html'
     form_class = UsuarioLoginFormulario
@@ -119,11 +80,12 @@ class Logout(RedirectView):
         return super().dispatch(request, *args, **kwargs)
  
 
-def Quiz(request):
+def Quiz(request,id):
     data = []            
-    qs = QuestionModel.objects.all()
+    qs = QuestionModel.objects.filter(category_id=id)
     for i in qs:
         item = i.toJSON() 
+        item['category'] = i.category.name
         cq = ChooseQuestionModel.objects.filter(question=i.id)
         dat = []
         for j in cq:
