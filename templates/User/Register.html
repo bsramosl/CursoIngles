@@ -49,26 +49,11 @@
 				<i class="far fa-sign-in"></i> Sign Up
 			  </button>
 			</div>
-		  </form>
-		  <div class="other-login-signup my-4">
-			<div class="or-login-signup text-center">
-			  <strong>Or Sign Up With</strong>
-			</div>
-		  </div>
-		  <div class="social-login">
-			<a href="#" class="btn-f"
-			  ><i class="fab fa-facebook-f"></i> Facebook</a
-			>
-			<a href="#" class="btn-g"
-			  ><i class="fab fa-google"></i> Google</a
-			>
-			<a href="#" class="btn-t"
-			  ><i class="fab fa-twitter"></i> Twitter</a
-			>
-		  </div>
+		  </form> 
+		 
 		  <div class="login-footer">
 			<p>
-			  Don't have an account? <a href="sign-up.html">Sign In.</a>
+			  Don't have an account? <a href="{% url 'Long:Login' %}" target="_blank">Sign In.</a>
 			</p>
 		  </div>
 		</div>
@@ -91,20 +76,4 @@
 
 
 
-
-
-
-
-
-
-<form method="POST">
-
-	{% csrf_token %}
-
-	{{form.as_p}}
-
-	<button type="submit">
-			Enviar
-	</button>
-	
-</form>
+ 
