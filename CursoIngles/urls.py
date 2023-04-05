@@ -22,6 +22,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('PrincipalApp.urls'))  ,
     path('',include('DashboardApp.urls'))  ,
+    path('', include('Password.urls')),
 ]
 
 urlpatterns += [
