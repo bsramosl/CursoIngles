@@ -60,3 +60,28 @@ class PreguntasRespondidas(models.Model):
 	respuesta = models.ForeignKey(ChooseQuestionModel, on_delete=models.CASCADE, null=True)
 	correcta  = models.BooleanField(verbose_name='¿Es esta la respuesta correcta?', default=False, null=False)
 	puntaje_obtenido = models.DecimalField(verbose_name='Puntaje Obtenido', default=0, decimal_places=2, max_digits=6)
+        
+
+LEVEL_CHOICES = (
+    ('basic','BASIC'),
+    ('intermediate', 'INTERMEDIATE'),
+    ('advance','ADVANCE'),)
+
+
+class CourseModel(models.Model):
+    name = models.CharField(max_length=50,verbose_name='Name')  
+    category = models.ForeignKey(CategoryModel,on_delete=models.CASCADE)   
+    description = models.TextField(verbose_name="Description")    
+    level  = models.CharField(max_length=12, choices=LEVEL_CHOICES, default='basic')
+
+    def __str__(self):
+        return self.name
+
+    def toJSON(self):
+        item = model_to_dict(self)       
+        return item    
+
+    class Meta:
+        verbose_name ='Course'
+        verbose_name_plural = 'Courses'
+        ordering = ['id']
