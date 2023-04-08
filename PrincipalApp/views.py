@@ -100,3 +100,13 @@ def Quiz(request,id):
 
 class Resultado(TemplateView):
     template_name = "Major/Resultado.html"
+
+class Courses(ListView):
+    template_name = "Major/Courses.html"
+    model = CourseModel
+    paginate_by = 10
+
+
+class CourseSingle(DetailView):
+    template_name = "Major/CourseSingle.html"
+    model = CourseModel

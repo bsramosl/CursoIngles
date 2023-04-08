@@ -54,6 +54,9 @@
                   <a class="nav-link" href="{% url 'Long:Inicio'%}">Home</a>
                 </li> 
                 <li class="nav-item">
+                  <a class="nav-link" href="{% url 'Long:Courses'%}">Courses</a>
+                </li> 
+                <li class="nav-item">
                   <a class="nav-link" href="contact.html">Contact</a>
                 </li>
               </ul>
@@ -83,7 +86,7 @@
                       </li>
                     {% else %}
                     <a href="{% url 'Long:Login' %}" class="header-btn-text">Sign In</a>
-                    <a href="#" class="header-btn">Get Started</a>
+                    <a href="{% url 'Long:Register' %}" class="header-btn">Get Started</a>
                     {% endif %}                 
                 </div>
               </div>
