@@ -11,11 +11,24 @@ from django.contrib import messages
 from django.contrib.auth import login, logout, update_session_auth_hash
 from django.views.decorators.cache import never_cache
 from django.views.generic.edit import FormView
+from django.db.models import Count
  
 
 
 
 class InicioView(TemplateView):
     template_name = 'Dashboard/Index.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        data = []            
+        ct = CategoryModel.objects.all()
+        for i in ct:
+            res = i.toJSON()
+            res["count"] = QuestionModel.objects.filter(category=i.id).count()
+            data.append(res)
+        context["category"] = data
+        return context
+    
 
      
