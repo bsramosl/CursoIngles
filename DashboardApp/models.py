@@ -27,7 +27,7 @@ class QuestionModel(models.Model):
     category = models.ForeignKey(CategoryModel, related_name="category", on_delete=models.CASCADE)   
     max_puntaje = models.IntegerField(verbose_name='Maximo Puntaje', default=1) 
 
-    def __str__(self): 
+    def __str__(self):  
         return self.text 
     
     def toJSON(self): 
