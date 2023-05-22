@@ -41,8 +41,7 @@ INSTALLED_APPS = [
     'DashboardApp',
     'PrincipalApp',
     'Password',
-    'crispy_forms',
-    'rest_framework',
+    'crispy_forms', 
 ]
 
 MIDDLEWARE = [
