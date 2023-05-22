@@ -15,8 +15,6 @@ from django.views.decorators.cache import never_cache
 from django.views.generic.edit import FormView
 from django.core.exceptions import *
 from django.http import Http404
-from rest_framework.parsers import JSONParser 
-from DashboardApp.serializers import *
 from django.db.models import Sum, Count
 
 
