@@ -1,0 +1,106 @@
+{% extends "layouts/BaseMajor.html" %}
+{% load static %}
+
+{% block title %}
+ 
+
+{% endblock %}
+
+
+{% block css %} 
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.12.1/datatables.min.css"/>
+ 
+{% endblock %}
+
+{% block content %}  
+    
+   
+<main class="main">
+    <div class=""> 
+      <div class="container">
+        <h2 class="breadcrumb-title"> </h2> 
+      </div>
+    </div>
+
+    <div class="course-cart py-120">
+      <div class="container">
+        <div class="course-cart-wrapper">
+          <div class="table-responsive" >
+             
+            <table class="table table-bordered table-hover"  id="container"> 
+            
+            </table>
+          </div>    
+        </div>
+      </div>
+    </div>
+  </main>
+           
+            
+{% endblock %}
+
+
+{% block extrajs %}  
+<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.12.1/datatables.min.js"></script>
+
+<script type="application/javascript">
+
+   
+  $(function () {
+    dat = {{ data | safe  }};
+ 
+         // Create the table element
+         let table = document.getElementById("container");
+         
+         // Get the keys (column names) of the first object in the JSON data
+         let cols = Object.keys(dat[0]);
+         cols=cols.slice(3,7);
+         // Create the header element
+         let thead = document.createElement("thead");
+         let tbody = document.createElement("tbody");
+         let tr = document.createElement("tr");
+         
+         // Loop through the column names and create header cells
+         cols.forEach((item) => {
+            let th = document.createElement("th");
+            th.innerText = item; // Set the column name as the text of the header cell
+            tr.appendChild(th); // Append the header cell to the header row           
+         });
+         thead.appendChild(tr); // Append the header row to the header      
+         table.append(thead) // Append the header to the table
+         
+         // Loop through the JSON data and create table rows
+         dat.forEach((item) => {
+            let tr = document.createElement("tr");
+            
+            // Get the values of the current object in the JSON data
+            let vals = Object.values(item);
+            vals=vals.slice(3,7)
+                       
+            // Loop through the values and create table cells
+            vals.forEach((elem) => {
+               let td = document.createElement("td");
+               td.innerText = elem; // Set the value as the text of the table cell
+               tr.appendChild(td); // Append the table cell to the table row
+            });
+            tbody.appendChild(tr); // Append the header row to the header    
+            table.appendChild(tbody); // Append the table row to the table
+         });
+     
+  }); 
+ 
+  $(function () {
+    $('#container').DataTable({
+        responsive: true,
+        autoWidth: false,
+        searching: false,
+        paging:   false,
+        ordering: false,
+        info:     false
+    });
+});  
+
+</script>  
+ 
+{% endblock extrajs %}

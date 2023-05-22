@@ -42,7 +42,7 @@
 
         .boton-contestada {
             color: white;
-            background: #4caee7;
+            background: gray;
         }
 
         .respuesta-simulador {
@@ -225,7 +225,9 @@
     
     var data = [];
     var listaPreguntas = new Array;
-    data = {{ question | safe  }};   
+    data = {{ question | safe  }}; 
+   
+    
     
     con = 0;
     document.getElementById('busca').style.display = 'block';

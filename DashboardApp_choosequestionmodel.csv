@@ -1,3 +1,4 @@
+id;correct;text;question_id
 1;1;Arise;1
 2;0;Lead;1
 3;0;Spread;1
@@ -1006,3 +1007,15 @@
 1006;0;Son;254
 1007;1;Uncle;254
 1008;0;Mother;254
+1009;0;She`s my aunt;255
+1010;1;She`s my cousin;255
+1011;0;She`s my sister;255
+1012;0;She`s my aunt;255
+1013;0;He`s my uncle;256
+1014;1;He`s my grandfather;256
+1015;0;He`s my brother;256
+1016;0;He`s my dad;256
+1017;0;She`s my aunt;257
+1018;1;She`s my nice;257
+1019;0;She`s my sister;257
+1020;0;She`s my daugther;257

@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from DashboardApp.view.Question.views import *
 from DashboardApp.view.ChooseQuestion.views import *
 from DashboardApp.view.Category.views import *
-from DashboardApp.view.Course.views import *
+ 
 
 app_name = 'Dash'
 urlpatterns = [
@@ -25,9 +25,6 @@ urlpatterns = [
     path('UpdateCategory/<int:pk>/',UpdateCategory.as_view(),name='UpdateCategory'),
     path('DeleteCategory/<int:pk>/',DeleteCategory.as_view(),name='DeleteCategory'), 
 
-    path('ListCourse/',ListCourse.as_view(),name='ListCourse'),
-    path('CreateCourse/',CreateCourse.as_view(),name='CreateCourse'),
-    path('UpdateCourse/<int:pk>/',UpdateCourse.as_view(),name='UpdateCourse'),
-    path('DeleteCourse/<int:pk>/',DeleteCourse.as_view(),name='DeleteCourse'), 
+  
 
 ]

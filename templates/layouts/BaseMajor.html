@@ -18,6 +18,9 @@
     <link rel="stylesheet" href="{% static 'major/css/magnific-popup.min.css'%}" />
     <link rel="stylesheet" href="{% static 'major/css/owl.carousel.min.css'%}" />
     <link rel="stylesheet" href="{% static 'major/css/style.css'%}" />
+    
+{% block css %} 
+{% endblock %}
   </head>
   <body>
     <div class="preloader">
@@ -52,10 +55,7 @@
               <ul class="navbar-nav"> 
                 <li class="nav-item">
                   <a class="nav-link" href="{% url 'Long:Inicio'%}">Home</a>
-                </li> 
-                <li class="nav-item">
-                  <a class="nav-link" href="{% url 'Long:Courses'%}">Courses</a>
-                </li> 
+                </li>                
                 <li class="nav-item">
                   <a class="nav-link" href="contact.html">Contact</a>
                 </li>
@@ -240,6 +240,7 @@
       data-cfasync="false"
       src="../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"
     ></script>
+    <script src="{% static 'dashboard/plugins/jquery/jquery.min.js'%}"></script>
     <script src="{% static 'major/js/jquery-3.6.0.min.js'%}"></script>
     <script src="{% static 'major/js/modernizr.min.js'%}"></script>
     <script src="{% static 'major/js/bootstrap.bundle.min.js'%}"></script>

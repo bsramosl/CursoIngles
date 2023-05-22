@@ -15,6 +15,9 @@ from django.views.decorators.cache import never_cache
 from django.views.generic.edit import FormView
 from django.core.exceptions import *
 from django.http import Http404
+from rest_framework.parsers import JSONParser 
+from DashboardApp.serializers import *
+from django.db.models import Sum, Count
 
 
 class Index(TemplateView):
@@ -22,7 +25,10 @@ class Index(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['category'] = CategoryModel.objects.all()
+        context['category'] = CategoryModel.objects.all() 
+        context['vocavulary'] = CategoryModel.objects.annotate(num_vocavulary=Count('detvocavularymodel')
+    )
+        print()
         return context
 
 
@@ -80,6 +86,10 @@ class Logout(RedirectView):
         return super().dispatch(request, *args, **kwargs)
  
 
+def Test(request): 
+    return render(request,"Major/Test.html" )
+
+
 def Quiz(request,id):
     data = []            
     qs = QuestionModel.objects.filter(category_id=id)
@@ -98,15 +108,45 @@ def Quiz(request,id):
     return render(request,"Major/Jugar.html", 
                   context={'question': random.SystemRandom().sample(data, 10)})
 
+def Example(request,id):
+    data = []            
+    qs = QuestionModel.objects.filter(category_id=id)
+    for i in qs:
+        item = i.toJSON() 
+        item['category'] = i.category.name
+        cq = ChooseQuestionModel.objects.filter(question=i.id)
+        dat = []
+        for j in cq:
+            res = j.toJSON()
+            res['correct'] = str(j.correct)
+            dat.append(res)
+            item['respuestas'] = dat
+        data.append(item)
+
+    return render(request,"Major/Example.html", 
+                  context={'question': random.SystemRandom().sample(data, 10)})
+
+
+
 class Resultado(TemplateView):
     template_name = "Major/Resultado.html"
 
-class Courses(ListView):
-    template_name = "Major/Courses.html"
-    model = CourseModel
-    paginate_by = 10
 
-
-class CourseSingle(DetailView):
-    template_name = "Major/CourseSingle.html"
-    model = CourseModel
+@csrf_exempt
+def Vocavulary(request,id):
+    data = [] 
+    cl = []     
+    qs = DetVocavularyModel.objects.filter(category_id=id)
+    for i in qs:
+        vc = VocavularyModel.objects.filter(id=i.vocavulary_id)
+        item = i.toJSON() 
+        for j in vc:
+            cl = []
+            item['category'] = i.category.name    
+            item['vocavulary'] = j.name     
+            cv = ColVocavularyModel.objects.filter(vocavulary_id=i.vocavulary_id)  
+            for k in cv:
+                item[k.name] = k.text       
+        data.append(item)       
+    return render(request,"Major/Vocavulary.html",  
+                  context={'data':data})

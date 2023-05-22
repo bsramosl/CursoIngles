@@ -12,10 +12,7 @@
  
 {% endblock %}
 
-{% block content %} 
-
-
- 
+{% block content %}  
 
   <div class="category-area py-120">
     <div class="container">
@@ -23,7 +20,38 @@
         <div class="col-lg-6 mx-auto">
           <div class="site-heading text-center">
             <h2 class="site-title">
-              Browse   <span>top category</span>
+          Vocavulary</span>
+            </h2> 
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        {% for voc in vocavulary %}
+        {% if voc.num_vocavulary > 0 %}
+        <div class="col-md-6 col-lg-4 col-xl-3">
+          <a href="{%url 'Long:Vocavulary' voc.id %}" class="d-block">
+            <div class="category-item category-color-7">
+              <div class="category-item-icon">
+                <i class="fad fa-book"></i>
+              </div>
+              <div class="category-item-content">
+                <h6>{{voc}}</h6>
+              </div>
+            </div>
+          </a>
+        </div> 
+        {% endif %}
+        {% endfor %}
+      </div> 
+    </div>
+
+
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 mx-auto">
+          <div class="site-heading text-center">
+            <h2 class="site-title">
+          Test</span>
             </h2> 
           </div>
         </div>

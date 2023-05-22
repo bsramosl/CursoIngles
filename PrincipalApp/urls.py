@@ -1,9 +1,8 @@
 from django.urls import path
 from PrincipalApp import views 
 from django.contrib.auth.decorators import login_required  
-from .forms import *
- 
- 
+from .forms import * 
+
 
 
 app_name = 'Long'
@@ -18,13 +17,13 @@ urlpatterns = [
  
 	path('Resultado/', views.Resultado.as_view(), name='Resultado'),
     
-	path('Courses/', views.Courses.as_view(), name='Courses'),
-    path('CourseSingle/<int:pk>/', views.CourseSingle.as_view(),name='CourseSingle'),
-        
 	path('Play/<int:id>/', views.Quiz,name='Play'),
     
-	
+	path('Vocavulary/<int:id>/', views.Vocavulary,name='Vocavulary'),
     
+	path('Example/<int:id>/', views.Example,name='Example'),
+    
+	path('Test/', views.Test,name='Test'),    
 	 
 
 ]

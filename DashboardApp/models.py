@@ -47,41 +47,42 @@ class ChooseQuestionModel(models.Model):
         item = model_to_dict(self) 
         item['question'] = self.question.toJSON() 
         return item 
+
   
+
+class VocavularyModel(models.Model):    
+    name = models.CharField(max_length=50,verbose_name='Name')
+
+    def __str__(self): 
+        return self.name 
     
-class QuizUser(models.Model):
-	usuario = models.OneToOneField(User, on_delete=models.CASCADE)
-	puntaje_total = models.DecimalField(verbose_name='Puntaje Total', default=0, decimal_places=2, max_digits=10)
+    def toJSON(self): 
+        item = model_to_dict(self) 
+        return item 
+  
 
-
-class PreguntasRespondidas(models.Model):
-	quizUser = models.ForeignKey(QuizUser, on_delete=models.CASCADE, related_name='intentos')
-	pregunta = models.ForeignKey(QuestionModel, on_delete=models.CASCADE)
-	respuesta = models.ForeignKey(ChooseQuestionModel, on_delete=models.CASCADE, null=True)
-	correcta  = models.BooleanField(verbose_name='¿Es esta la respuesta correcta?', default=False, null=False)
-	puntaje_obtenido = models.DecimalField(verbose_name='Puntaje Obtenido', default=0, decimal_places=2, max_digits=6)
-        
-
-LEVEL_CHOICES = (
-    ('basic','BASIC'),
-    ('intermediate', 'INTERMEDIATE'),
-    ('advance','ADVANCE'),)
-
-
-class CourseModel(models.Model):
-    name = models.CharField(max_length=50,verbose_name='Name')  
+class DetVocavularyModel(models.Model):
     category = models.ForeignKey(CategoryModel,on_delete=models.CASCADE)   
-    description = models.TextField(verbose_name="Description")    
-    level  = models.CharField(max_length=12, choices=LEVEL_CHOICES, default='basic')
+    vocavulary = models.ForeignKey(VocavularyModel,on_delete=models.CASCADE)    
 
-    def __str__(self):
-        return self.name
+    def __str__(self): 
+        return self.category.name
+    
+    def toJSON(self): 
+        item = model_to_dict(self) 
+        return item 
+ 
+ 
+class ColVocavularyModel(models.Model):
+    vocavulary = models.ForeignKey(VocavularyModel,on_delete=models.CASCADE)    
+    name = models.CharField(max_length=50,verbose_name='Name')
+    text = models.CharField(max_length=50,verbose_name='Text')
 
-    def toJSON(self):
-        item = model_to_dict(self)       
-        return item    
-
-    class Meta:
-        verbose_name ='Course'
-        verbose_name_plural = 'Courses'
-        ordering = ['id']
+    def __str__(self): 
+        return self.name 
+    
+    def toJSON(self): 
+        item = model_to_dict(self) 
+        return item 
+ 
+ 

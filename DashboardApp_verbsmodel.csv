@@ -1,0 +1,161 @@
+﻿1;Arise;Arose;arisen;Surgir
+2;Awake;Awakened / Awoke;Awakened / Awoken;Despertarse
+3;Be;Was / Were;Been;Ser/Estar
+4;Bear;Bore;Borne / Born;Soportar
+5;Beat;Beat;Beaten;Golpear
+6;Become;Became;Become;Llegar a ser
+7;Begin;Began;Begun;Empezar
+8;Bend;Bent;Bent;Doblar
+9;Bet;Bet/Betted;Bet/Betted;Apostar
+10;Bid;Bid / Bade;Bidden;Rogar,desear
+11;Bid;Bid;Bid;Pujar
+12;Bind;Bound;Bound;Atar
+13;Bite;Bit;Bitten;Morder
+14;Bleed;Bled;Bled;Sangrar
+15;Blow;Blew;Blown;Soplar
+16;Break;Broke;Broken;Romper
+17;Breed;Bred;Bred;Criar
+18;Bring;Brought;Brought;Traer
+19;Broadcast;Broadcast / Broadcasted;Broadcast / Broadcasted;Transmitir
+20;Browbeat;Browbeat;Browbeaten / Browbeat;Intimidar
+21;Build;Built;Built;Construir
+22;Burn;Burned / Burnt;Burned / Burnt;Quemar
+23;Burst;Burst;Burst;Estallar,reventar
+24;Buy;Bought;Bought;Comprar
+25;Cast;Cast;Cast;Arrojar
+26;Catch;Caught;Caught;Atrapar
+27;Choose;Chose;Chosen;Elegir
+28;Cling;Clung;Clung;Adherirse
+29;Come;Came;Come;Venir
+30;Cost;Cost;Cost;Costar
+31;Creep;Crept;Crept;Arrastrarse
+32;Cut;Cut;Cut;Cortar
+33;Deal;Dealt;Dealt;Tratar
+34;Dig;Dug;Dug;Cavar
+35;Disprove;Disproved;Disproved / Disproven;Refutar
+36;Do;Did;Done;Hacer
+37;Draw;Drew;Drawn;Dibujar
+38;Dream;Dreamt/ Dreamed;Dreamt/ Dreamed;Soñar
+39;Drink;Drank;Drunk;Beber
+40;Drive;Drove;Driven;Conducir
+41;Eat;Ate;Eaten;Comer
+42;Fall;Fell;Fallen;Caer
+43;Feed;Fed;Fed;Alimentar
+44;Feel;Felt;Felt;Sentir
+45;Fight;Fought;Fought;Pelear
+46;Find;Found;Found;Encontrar
+47;Flee;Fled;Fled;Huir
+48;Fly;Flew;Flown;Volar
+49;Forbid;Forbade;Forbidden;Prohibir
+50;Forecast;Forecast;Forecast;Pronosticar (el tiempo)<
+51;Forget;Forgot;Forgotten;Olvidar
+52;Forgive;Forgave;Forgiven;Perdonar
+53;Forsake;Forsook;Forsaken;Abandonar
+54;Freeze;Froze;Frozen;Congelar
+55;Get;Got;Got/ Gotten;Obtener
+56;Give;Gave;Given;Dar
+57;Go;Went;Gone;Ir
+58;Grind;Ground;Ground;Moler
+59;Grow;Grew;Grown;Crecer
+60;Hang;Hung;Hung;Colgar
+61;Have;Had;Had;Tener
+62;Hear;Heard;Heard;Oír
+63;Hide;Hid;Hidden;Esconderse
+64;Hit;Hit;Hit;Golpear
+65;Hold;Held;Held;Mantener
+66;Hurt;Hurt;Hurt;Herir
+67;Input;Input/ Inputted;Input/ Inputted;Entrar (datos)
+68;Keep;Kept;Kept;Guardar
+69;Kneel;Knelt;Knelt;Arrodillarse
+70;Knit;Knitted / Knit;Knitted/ Knit;Tejer, tricotar
+71;Know;Knew;Known;Saber
+72;Lay;Laid;Laid;Poner
+73;Lead;Led;Led;Guiar
+74;Lean;Leaned/ Leant;Leaned/ Leant;Apoyarse
+75;Leap;Leaped/ Leapt;Leaped/ Leapt;Saltar
+76;Learn;Learnt/ Learned;Learnt/ Learned;Aprender
+77;Leave;Left;Left;Dejar
+78;Lend;Lent;Lent;Prestar
+79;Let;Let;Let;Permitir
+80;Lie;Lay;Lain;Acostarse, tenderse
+81;Lie (regular);Lied;Lied;Mentir
+82;Light;Lit/ Lighted;Lit/ Lighted;Encender
+83;Lose;Lost;Lost;Perder
+84;Make;Made;Made;Hacer
+85;Mean;Meant;Meant;Significar, querer decir
+86;Meet;Met;Met;Encontrarse
+87;Mistake;Mistook;Mistaken;Equivocarse/confundir
+88;Overcome;Overcame;Overcome;Superar
+89;Pay;Paid;Paid;Pagar
+90;Plead;Pleaded/ Pled;Pleaded/ Pled;Alegar
+91;Preset;Preset;Preset;Programar
+92;Prove;Proved;Proven/ Proved;Probar, demostrar
+93;Put;Put;Put;Poner
+94;Quit;Quit/ Quitted;Quit/ Quitted;Abandonar
+95;Read;Read;Read;Leer
+96;Reset;Reset;Reset;Reajustar, restaurar
+97;Rewind;Rewound;Rewound;Rebobinar
+98;Ride;Rode;Ridden;Montar
+99;Ring;Rang;Rung;Sonar, llamar por teléfono
+100;Rise;Rose;Risen;Elevar
+101;Run;Ran;Run;Correr
+102;Say;Said;Said;Decir
+103;See;Saw;Seen;Ver
+104;Sell;Sold;Sold;Vender
+105;Send;Sent;Sent;Enviar
+106;Set;Set;Set;Poner, colocar
+107;Sew;Sewed;Sewn/ Sewed;Coser
+108;Shake;Shook;Shaken;Sacudir<
+109;Shave;Shaved;Shaved/ Shaven;Afeitarse
+110;Shear;Sheared;sheared/shorn;Esquilar
+111;Shine;Shone;Shone;Brillar
+112;Shoot;Shot;Shot;Disparar
+113;Show;Showed;Shown/ Showed;Mostrar
+114;Shrink;Shrank/ Shrunk;Shrunk;Encoger
+115;Shut;Shut;Shut;Cerrar
+116;Sing;Sang;Sung;Cantar
+117;Sink;Sank;Sunk;Hundir
+118;Sit;Sat;Sat;Sentarse
+119;Sleep;Slept;Slept;Dormir
+120;Slide;Slid;Slid;Deslizar
+121;Smell;Smelled/ Smelt;Smelled/ Smelt;Oler
+122;Sow;Sowed;Sown/ Sowed;Sembrar
+123;Speak;Spoke;Spoken;Hablar
+124;Speed;Sped/ Speeded;Sped/ Speeded;Acelerar
+125;Spell;Spelt/ Spelled;Spelt/ Spelled;Deletrear
+126;Spend;Spent;Spent;Gastar
+127;Spill;Spilt/ Spilled;Spilt/ Spilled;Derramar
+128;Spin;Spun;Spun;Girar, hilar
+129;Spit;Spit/ Spat;Spit/ Spat;Escupir
+130;Split;Split;Split;Partir
+131;Spoil;Spoilt/ Spoiled;Spoilt/ Spoiled;Estropear
+132;Spread;Spread;Spread;Extenderse
+133;Stand;Stood;Stood;Estar de pie
+134;Steal;Stole;Stolen;Robar
+135;Stick;Stuck;Stuck;Pegar
+136;Stink;Stank/ Stunk;Stunk;Apestar
+137;Strew;Strewed;Strewn/ Strewed;Esparcir
+138;Strike;Struck;Struck/ Stricken;Golpear
+139;Swear;Swore;Sworn;Jurar
+140;Sweat;Sweat/ Sweated;Sweat/ Sweated;Sudar
+141;Sweep;Swept;Swept;Barrer
+142;Swim;Swam;Swum;Nadar
+143;Take;Took;Taken;Tomar
+144;Teach;Taught;Taught;Enseñar
+145;Tear;Tore;Torn;Rasgar
+146;Telecast;Telecast;Telecast;Televisar
+147;Tell;Told;Told;Decir
+148;Think;Thought;Thought;Pensar
+149;Throw;Threw;Thrown;Lanzar
+150;Tread;Trod;Trodden/ Trod;Pisar
+151;Understand;Understood;Understood;Entender
+152;Undo;Undid;Undone;Deshacer
+153;Unfreeze;Unfroze;Unfrozen;Descongelar
+154;Wake;Woke;Woken;Despertarse
+155;Wear;Wore;Worn;Llevar puesto
+156;Weave;Wove;Woven;Tejer
+157;Wed;Wed/ Wedded;Wed/ Wedded;Casarse
+158;Weep;Wept;Wept;Llorar
+159;Win;Won;Won;Ganar
+160;Wring;Wrung;Wrung;Retorcer
+161;Write;Wrote;Written;Escribir

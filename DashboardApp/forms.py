@@ -45,11 +45,7 @@ class QuestionForm(ModelForm):
         }
  
 
-class CourseForm(ModelForm):
-    
-    class Meta:	
-        model = CourseModel
-        fields = ('__all__')
+
 
 class ChooseQuestionForm(ModelForm):
 
